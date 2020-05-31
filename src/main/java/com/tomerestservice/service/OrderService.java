@@ -49,8 +49,20 @@ public class OrderService {
 	        // Retrieve order info from billing table
 	        resultSet = DatabaseUtils.retrieveQueryResults(connection, ALL_BILLING_QUERY + " WHERE order_id = " + orderId);
 	        if (resultSet != null) {
-	        	
+	        	resultSet.next();
+	        	order.setCardType(resultSet.getString("card_type"));
+	        	order.setCardNumber(resultSet.getString("card_number"));
+	        	order.setExpMonth(resultSet.getInt("exp_month"));
+	        	order.setExpYear(resultSet.getInt("exp_year"));
+	        	order.setCvv(resultSet.getInt("cvv"));
+	        	order.setSubtotal(resultSet.getString("subtotal"));
+	        	order.setTax(resultSet.getString("tax"));
+	        	order.setShippingCost(resultSet.getString("shipping_cost"));
+	        	order.setTotal(resultSet.getString("total"));
+	        	billingResult = true;
 	        }
+	        
+	        // Retrieve order info from orders table
 	        
 	        if (customerResult && billingResult && orderItemsResult) {
 	        	return order;
