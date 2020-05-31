@@ -1,6 +1,9 @@
 package com.tomerestservice.model;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "order")
 //You will need to create a Java Object. Jersey uses these to construct requests and responses.
@@ -8,6 +11,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Order {
     private int orderId;
     
+    // For customer table
     private String firstName;
     private String lastName;
     private String phoneNum;
@@ -18,6 +22,7 @@ public class Order {
     private String zipcode;
     private String shippingMethod;
     
+    // For billing table
     private String cardType;
     private String cardNumber;
     private int expMonth;
@@ -29,7 +34,8 @@ public class Order {
     private String total;
     
 
-    // orders table vector? with item?
+    // For order_items table
+    List<OrderItem> orderItems = new ArrayList<OrderItem>();
     
     public int getOrderId() {
         return orderId;
@@ -166,15 +172,7 @@ public class Order {
     public void setTax(String tax) {
     	this.tax = tax;
     }
-    
-    public String getTax() {
-    	return tax;
-    }
-    
-    public void setTax(String tax) {
-    	this.tax = tax;
-    }
-    
+        
     public String getShippingCost() {
     	return shippingCost;
     }
@@ -190,4 +188,6 @@ public class Order {
     public void setTotal(String total) {
     	this.total = total;
     }
+    
+    /// list of order items set and get
 }

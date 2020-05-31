@@ -63,7 +63,6 @@ public class OrderService {
 	        }
 	        
 	        // Retrieve order info from orders table
-	        
 	        if (customerResult && billingResult && orderItemsResult) {
 	        	return order;
 	        }
@@ -92,9 +91,9 @@ public class OrderService {
     }
 
     public static boolean postOrder(Order order) {
-/*
-        String sql = "INSERT INTO TODOS  (TODO_SUMMARY, TODO_DESC)" +
-                "VALUES (?, ?)";
+
+        String sql = "INSERT INTO customers (order_id, )" +
+                		"VALUES (?, ?)";
         Connection connection = DatabaseConnector.getConnection();
         return DatabaseUtils.performDBUpdate(connection, sql, example.getSummary(), example.getDescription());*/
     	
