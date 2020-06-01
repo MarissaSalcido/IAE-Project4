@@ -9,20 +9,9 @@ public class OrderItem {
 	private String productId;
 	private String imageSrc;
 	private String itemName;
-	private double price;
-	private int quantity;
-	
-	// Constructors
-	OrderItem() {}
-	
-	OrderItem(String productId, String imageSrc, String itemName, double price, int quantity) {
-		this.productId = productId;
-		this.imageSrc = imageSrc;
-		this.itemName = itemName;
-		this.price = price;
-		this.quantity = quantity;		
-	}
-	
+	private String price;
+	private String quantity;
+		
 	public String getProductId() {
 		return this.productId;
 	}
@@ -47,21 +36,19 @@ public class OrderItem {
 		this.itemName = itemName;
 	}
 	
-	public double getPrice() {
+	public String getPrice() {
 		return this.price;
 	}
 	
-	public void setPrice(double price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 	
-	// Returns the quantity as an int
-	public int getQuantity() {
+	public String getQuantity() {
 		return this.quantity;
 	}
-	
-	// Sets the quantity as an int
-	public void setQuantity(int quantity) {
+		
+	public void setQuantity(String quantity) {
 		this.quantity = quantity;
 	}
 }
