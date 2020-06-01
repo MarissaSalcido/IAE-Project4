@@ -189,5 +189,35 @@ public class Order {
     	this.total = total;
     }
     
-    /// list of order items set and get
+    public List<OrderItem> getOrderItems() {
+    	List<OrderItem> itemsList = new ArrayList<OrderItem>();
+    	OrderItem itemToAdd;
+    	
+    	for (int i = 0; i < this.orderItems.size(); ++i) {
+    		itemToAdd = new OrderItem();
+    		itemToAdd.setProductId(this.orderItems.get(i).getProductId());
+    		itemToAdd.setImageSrc(this.orderItems.get(i).getImageSrc());
+    		itemToAdd.setItemName(this.orderItems.get(i).getItemName());
+    		itemToAdd.setPrice(this.orderItems.get(i).getPrice());
+    		itemToAdd.setQuantity(this.orderItems.get(i).getQuantity());
+    		itemsList.add(itemToAdd);
+    	}
+    	
+    	return itemsList;
+    }
+    
+    
+    public void setOrderItems(List<OrderItem> orderItems) {
+    	OrderItem itemToAdd;
+    	
+    	for (int i = 0; i < orderItems.size(); ++i) {
+    		itemToAdd = new OrderItem();
+    		itemToAdd.setProductId(orderItems.get(i).getProductId());
+    		itemToAdd.setImageSrc(orderItems.get(i).getImageSrc());
+    		itemToAdd.setItemName(orderItems.get(i).getItemName());
+    		itemToAdd.setPrice(orderItems.get(i).getPrice());
+    		itemToAdd.setQuantity(orderItems.get(i).getQuantity());
+    		this.orderItems.add(itemToAdd);
+    	}
+    }
 }

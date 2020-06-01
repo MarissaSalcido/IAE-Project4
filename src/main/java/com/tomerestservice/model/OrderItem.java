@@ -12,7 +12,9 @@ public class OrderItem {
 	private double price;
 	private int quantity;
 	
-	// Constructor
+	// Constructors
+	OrderItem() {}
+	
 	OrderItem(String productId, String imageSrc, String itemName, double price, int quantity) {
 		this.productId = productId;
 		this.imageSrc = imageSrc;
