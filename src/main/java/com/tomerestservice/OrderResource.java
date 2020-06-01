@@ -14,7 +14,7 @@ import java.util.List;
  *
  */
 //todos will be the pathsegment that precedes any path segment specified by @Path on a method.
-@Path("/order")
+@Path("/orders")
 public class OrderResource {
     //This method represents an endpoint with the URL /todos and a POST request.
     // Since there is no @PathParam mentioned, the /todos as a relative path and a POST request will invoke this method.

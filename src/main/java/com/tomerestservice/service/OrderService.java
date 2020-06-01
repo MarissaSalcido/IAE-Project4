@@ -42,7 +42,7 @@ public class OrderService {
         	insertIntoBilling = DatabaseUtils.performDBUpdateWithOrderId(connection, sql, orderId, order.getCardType(), order.getCardNumber(), order.getExpMonth(), order.getExpYear(), order.getCvv(), order.getSubtotal(), order.getTax(), order.getShippingCost(), order.getTotal());
         
         	// If not successfully inserted into billing table, remove entry in customer table to preserve idempotent of the database
-        	if (!insertIntoBilling) {
+/*        	if (!insertIntoBilling) {
         		///////////////////////////// Delete entry in customer table
         	}
         	else {
@@ -66,7 +66,7 @@ public class OrderService {
 		        		// i = itemsList.size();
 		        	}
    	        	}
-        	}
+        	}*/
         }
         
         try {
