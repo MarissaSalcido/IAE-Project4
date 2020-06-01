@@ -11,18 +11,7 @@ public class OrderItem {
 	private String itemName;
 	private String price;
 	private String quantity;
-	
-	// Constructors
-	public OrderItem() {}
-	
-	public OrderItem(String productId, String imageSrc, String itemName, double price, int quantity) {
-		this.productId = productId;
-		this.imageSrc = imageSrc;
-		this.itemName = itemName;
-		this.price = Double.toString(price);
-		this.quantity = Integer.toString(quantity);		
-	}
-	
+		
 	public String getProductId() {
 		return this.productId;
 	}
@@ -51,10 +40,6 @@ public class OrderItem {
 		return this.price;
 	}
 	
-	public void setPrice(double price) {
-		this.price = Double.toString(price);
-	}
-	
 	public void setPrice(String price) {
 		this.price = price;
 	}
@@ -62,11 +47,7 @@ public class OrderItem {
 	public String getQuantity() {
 		return this.quantity;
 	}
-	
-	public void setQuantity(int quantity) {
-		this.quantity = Integer.toString(quantity);
-	}
-	
+		
 	public void setQuantity(String quantity) {
 		this.quantity = quantity;
 	}

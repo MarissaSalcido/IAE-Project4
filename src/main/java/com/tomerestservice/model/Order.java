@@ -137,24 +137,24 @@ public class Order {
     	return expMonth;
     }
     
-    public void setExpMonth(int expMonth) {
-    	this.expMonth = Integer.toString(expMonth);
+    public void setExpMonth(String expMonth) {
+    	this.expMonth = expMonth;
     }
 
     public String getExpYear() {
     	return expYear;
     }
     
-    public void setExpYear(int expYear) {
-    	this.expYear = Integer.toString(expYear);
+    public void setExpYear(String expYear) {
+    	this.expYear = expYear;
     }
     
     public String getCvv() {
     	return cvv;
     }
     
-    public void setCvv(int cvv) {
-    	this.cvv = Integer.toString(cvv);
+    public void setCvv(String cvv) {
+    	this.cvv = cvv;
     }
 
     public String getSubtotal() {

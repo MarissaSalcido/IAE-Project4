@@ -29,20 +29,22 @@ public class OrderService {
         Connection connection = DatabaseConnector.getConnection();
         int orderId = DatabaseUtils.performDBUpdateAndReturnOrderId(connection, sql, order.getFirstName(), order.getLastName(), order.getPhoneNum(), order.getAddress1(), order.getAddress2(), order.getCity(), order.getState(), order.getZipcode(), order.getShippingMethod());
     	
+        System.out.println("Order Id: "+ orderId);
         // If order info was not successfully inserted into customers table, return false
         if (orderId <= 0) {
         	insertIntoCustomers = false;
         }
         else {
         	insertIntoCustomers = true;
-        	order.setOrderId(orderId);
+//        	order.setOrderId(orderId);
         	
         	sql = "INSERT INTO billing (order_id, card_type, card_number, exp_month, exp_year, cvv, subtotal, tax, shipping_cost, total)" +
             		"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         	insertIntoBilling = DatabaseUtils.performDBUpdateWithOrderId(connection, sql, orderId, order.getCardType(), order.getCardNumber(), order.getExpMonth(), order.getExpYear(), order.getCvv(), order.getSubtotal(), order.getTax(), order.getShippingCost(), order.getTotal());
-        
+        	System.out.println("insertIntoBilling: " + insertIntoBilling);
+        	
         	// If not successfully inserted into billing table, remove entry in customer table to preserve idempotent of the database
-/*        	if (!insertIntoBilling) {
+        	if (!insertIntoBilling) {
         		///////////////////////////// Delete entry in customer table
         	}
         	else {
@@ -66,7 +68,7 @@ public class OrderService {
 		        		// i = itemsList.size();
 		        	}
    	        	}
-        	}*/
+        	}
         }
         
         try {
@@ -121,9 +123,9 @@ public class OrderService {
 	        	resultSet.next();
 	        	order.setCardType(resultSet.getString("card_type"));
 	        	order.setCardNumber(resultSet.getString("card_number"));
-	        	order.setExpMonth(resultSet.getInt("exp_month"));
-	        	order.setExpYear(resultSet.getInt("exp_year"));
-	        	order.setCvv(resultSet.getInt("cvv"));
+	        	order.setExpMonth(resultSet.getString("exp_month"));
+	        	order.setExpYear(resultSet.getString("exp_year"));
+	        	order.setCvv(resultSet.getString("cvv"));
 	        	order.setSubtotal(resultSet.getString("subtotal"));
 	        	order.setTax(resultSet.getString("tax"));
 	        	order.setShippingCost(resultSet.getString("shipping_cost"));

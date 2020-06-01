@@ -64,7 +64,7 @@ public class DatabaseUtils {
         PreparedStatement preparedStatement = null;
 
         try {
-            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
 
             int i = 1;
@@ -99,17 +99,22 @@ public class DatabaseUtils {
             preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setInt(1, orderId);
+            System.out.println("orderId param: "+ orderId);
             
-            int i = 2;
+            int j = 2;
             for (String param : params) {
-
-                preparedStatement.setString(i++, param);
-
+                preparedStatement.setString(j, param);
+                System.out.println("paramInUtil: " + j + " " + param);
+                ++j;
             }
 
-            return preparedStatement.executeUpdate() > 0 ;
+            //int mysqlOutput = preparedStatement.executeUpdate();
+          //  System.out.println("mysqlOutput: " + );
+          //  return mysqlOutput > 0 ;
+            return preparedStatement.executeUpdate() > 0;
 
         } catch (SQLException e) {
+        	 System.err.println("Message: " + e.getMessage());
             return false;
         }
     }
