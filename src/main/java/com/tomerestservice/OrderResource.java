@@ -18,7 +18,7 @@ import java.util.List;
 public class OrderResource {
     //This method represents an endpoint with the URL /todos and a POST request.
     // Since there is no @PathParam mentioned, the /todos as a relative path and a POST request will invoke this method.
-    @POST
+/*    @POST
     @Consumes({MediaType.APPLICATION_JSON}) //This method accepts a request of the JSON type
     public Response addOrder(Order order) {
 
@@ -52,7 +52,7 @@ public class OrderResource {
         return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 
 
-    }
+    }*/
 
 
     //This method represents an endpoint with the URL /todos/{id} and a GET request ( Note that {id} is a placeholder for a path parameter)

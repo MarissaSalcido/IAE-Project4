@@ -16,8 +16,17 @@ public class OrderService {
     private final static String ALL_BILLING_QUERY = "SELECT * FROM billing";
     private final static String ALL_ORDERS_QUERY = "SELECT * FROM orders";
     
+ /*   public static boolean postOrder(Order order) {
 
-    public static Order getOrderById(int orderId) {
+        String sql = "INSERT INTO customers (order_id, )" +
+                		"VALUES (?, ?)";
+        Connection connection = DatabaseConnector.getConnection();
+        return DatabaseUtils.performDBUpdate(connection, sql, example.getSummary(), example.getDescription());
+    	
+    	return;
+    }*/
+
+/*    public static Order getOrderById(int orderId) {
         //Get a new connection object before going forward with the JDBC invocation.
         Connection connection = DatabaseConnector.getConnection();
         boolean customerResult = false;
@@ -88,17 +97,7 @@ public class OrderService {
         return null;
 
 
-    }
-
-    public static boolean postOrder(Order order) {
-
-        String sql = "INSERT INTO customers (order_id, )" +
-                		"VALUES (?, ?)";
-        Connection connection = DatabaseConnector.getConnection();
-        return DatabaseUtils.performDBUpdate(connection, sql, example.getSummary(), example.getDescription());*/
-    	
-    	return;
-    }
+    }*/
 }
 
 
