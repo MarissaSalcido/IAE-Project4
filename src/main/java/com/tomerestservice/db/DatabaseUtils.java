@@ -58,4 +58,59 @@ public class DatabaseUtils {
             return false;
         }
     }
+
+    
+    public static int performDBUpdateAndReturnOrderId(Connection connection, String sql, String... params) {
+        PreparedStatement preparedStatement = null;
+
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+
+
+            int i = 1;
+            for (String param : params) {
+
+                preparedStatement.setString(i++, param);
+
+            }
+
+            if (preparedStatement.executeUpdate() > 0) {
+            	ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+    	    	if (generatedKeys.next()) {
+    	    		return generatedKeys.getInt(1);
+    	    	}
+    	    	else {
+    	    		return -1;
+    	    	}
+            }
+            else {
+            	return -1;
+            }
+
+        } catch (SQLException e) {
+            return -1;
+        }
+    }
+    
+    public static boolean performDBUpdateWithOrderId(Connection connection, String sql, int orderId, String... params) {
+        PreparedStatement preparedStatement = null;
+
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setInt(1, orderId);
+            
+            int i = 2;
+            for (String param : params) {
+
+                preparedStatement.setString(i++, param);
+
+            }
+
+            return preparedStatement.executeUpdate() > 0 ;
+
+        } catch (SQLException e) {
+            return false;
+        }
+    }
 }

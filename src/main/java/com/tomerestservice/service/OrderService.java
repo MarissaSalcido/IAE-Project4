@@ -8,25 +8,80 @@ import java.util.List;
 
 import com.tomerestservice.db.DatabaseConnector;
 import com.tomerestservice.db.DatabaseUtils;
+import com.tomerestservice.model.Example;
 import com.tomerestservice.model.Order;
+import com.tomerestservice.model.OrderItem;
 
 public class OrderService {
 
     private final static String ALL_CUSTOMERS_QUERY = "SELECT * FROM customers";
     private final static String ALL_BILLING_QUERY = "SELECT * FROM billing";
-    private final static String ALL_ORDERS_QUERY = "SELECT * FROM orders";
+    private final static String ALL_ORDER_ITEMS_QUERY = "SELECT * FROM order_items";
     
- /*   public static boolean postOrder(Order order) {
-
-        String sql = "INSERT INTO customers (order_id, )" +
-                		"VALUES (?, ?)";
-        Connection connection = DatabaseConnector.getConnection();
-        return DatabaseUtils.performDBUpdate(connection, sql, example.getSummary(), example.getDescription());
+    public static boolean postOrder(Order order) {
+    	boolean insertIntoCustomers = false;
+    	boolean insertIntoBilling = false;
+    	boolean insertIntoOrderItems = false;
     	
-    	return;
-    }*/
+    	// Insert order info to into customers table
+        String sql = "INSERT INTO customers (first_name, last_name, phone_num, address_1, address_2, city, state, zipcode, shipping_method)" +
+                		"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        Connection connection = DatabaseConnector.getConnection();
+        int orderId = DatabaseUtils.performDBUpdateAndReturnOrderId(connection, sql, order.getFirstName(), order.getLastName(), order.getPhoneNum(), order.getAddress1(), order.getAddress2(), order.getCity(), order.getState(), order.getZipcode(), order.getShippingMethod());
+    	
+        // If order info was not successfully inserted into customers table, return false
+        if (orderId <= 0) {
+        	insertIntoCustomers = false;
+        }
+        else {
+        	insertIntoCustomers = true;
+        	order.setOrderId(orderId);
+        	
+        	sql = "INSERT INTO billing (order_id, card_type, card_number, exp_month, exp_year, cvv, subtotal, tax, shipping_cost, total)" +
+            		"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        	insertIntoBilling = DatabaseUtils.performDBUpdateWithOrderId(connection, sql, orderId, order.getCardType(), order.getCardNumber(), order.getExpMonth(), order.getExpYear(), order.getCvv(), order.getSubtotal(), order.getTax(), order.getShippingCost(), order.getTotal());
+        
+        	// If not successfully inserted into billing table, remove entry in customer table to preserve idempotent of the database
+        	if (!insertIntoBilling) {
+        		///////////////////////////// Delete entry in customer table
+        	}
+        	else {
+   	        	sql = "INSERT INTO order_items (order_id, product_id, image_src, item_name, price, quantity)" +
+	            		"VALUES (?, ?, ?, ?, ?, ?)";
+   	        	
+   	        	List<OrderItem> itemsList = order.getOrderItems();
+   	        	
+   	        	for (int i = 0; i < itemsList.size(); ++i) {
+   	        		OrderItem item = itemsList.get(i);
+   	        		
+		        	insertIntoOrderItems = DatabaseUtils.performDBUpdateWithOrderId(connection, sql, orderId, item.getProductId(), item.getImageSrc(), item.getItemName(), item.getPrice(), item.getQuantity());
+		        
+		        	// If not successfully inserted into  table, remove entry in customer table to preserve idempotent of the database
+		        	if (!insertIntoOrderItems) {
+		        		///////////////////////////// Delete entry in customer table
+		        		////////// Delete entry in billing table
+		        		///// Delete any entries in order table if int i > 0
+		        		
+		        		// To get out of the loop inserting each item into the order_items table
+		        		// i = itemsList.size();
+		        	}
+   	        	}
+        	}
+        }
+        
+        try {
 
-/*    public static Order getOrderById(int orderId) {
+            // We will always close the connection once we are done interacting with the Database.
+            connection.close();
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    	return (insertIntoCustomers && insertIntoBilling && insertIntoOrderItems);
+    }
+
+    public static Order getOrderById(int orderId) {
         //Get a new connection object before going forward with the JDBC invocation.
         Connection connection = DatabaseConnector.getConnection();
         boolean customerResult = false;
@@ -71,6 +126,27 @@ public class OrderService {
 	        	billingResult = true;
 	        }
 	        
+	        // Retrieve order info from order_items table
+	        resultSet = DatabaseUtils.retrieveQueryResults(connection, ALL_ORDER_ITEMS_QUERY + " WHERE order_id = " + orderId);
+	        if (resultSet != null) {
+		    	OrderItem itemFromDB;
+		    	List<OrderItem> itemsList = new ArrayList<OrderItem>();
+		    	
+		    	while (resultSet.next()) {
+		    		itemFromDB = new OrderItem();
+		    		itemFromDB.setProductId(resultSet.getString("product_id"));
+		    		itemFromDB.setImageSrc(resultSet.getString("image_src"));
+		    		itemFromDB.setItemName(resultSet.getString("item_name"));
+		    		itemFromDB.setPrice(resultSet.getString("price"));
+		    		itemFromDB.setQuantity(resultSet.getString("quantity"));
+		    		itemsList.add(itemFromDB);
+			    	
+			    	orderItemsResult = true;
+		    	}
+		    	
+	    		order.setOrderItems(itemsList);
+	        }
+	        
 	        // Retrieve order info from orders table
 	        if (customerResult && billingResult && orderItemsResult) {
 	        	return order;
@@ -92,11 +168,27 @@ public class OrderService {
                     e.printStackTrace();
                 }
             }
-        }
 
         return null;
 
 
+    }
+    
+/*    public static boolean deleteExample(Example retrievedExample) {
+
+        String sql = "DELETE FROM TODOS WHERE TODO_ID=?;";
+
+        Connection connection = DatabaseConnector.getConnection();
+
+        boolean updateStatus = DatabaseUtils.performDBUpdate(connection, sql, String.valueOf(retrievedExample.getId()));
+
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return updateStatus;
     }*/
 }
 

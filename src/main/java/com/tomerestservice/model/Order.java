@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 //You will need to create a Java Object. Jersey uses these to construct requests and responses.
 
 public class Order {
-    private int orderId;
+    private int orderId = 0;
     
     // For customer table
     private String firstName;
@@ -25,9 +25,9 @@ public class Order {
     // For billing table
     private String cardType;
     private String cardNumber;
-    private int expMonth;
-    private int expYear;
-    private int cvv;
+    private String expMonth;
+    private String expYear;
+    private String cvv;
     private String subtotal;
     private String tax;
     private String shippingCost;
@@ -133,28 +133,28 @@ public class Order {
     	this.cardNumber = cardNumber;
     }
     
-    public int getExpMonth() {
+    public String getExpMonth() {
     	return expMonth;
     }
     
     public void setExpMonth(int expMonth) {
-    	this.expMonth = expMonth;
+    	this.expMonth = Integer.toString(expMonth);
     }
 
-    public int getExpYear() {
+    public String getExpYear() {
     	return expYear;
     }
     
     public void setExpYear(int expYear) {
-    	this.expYear = expYear;
+    	this.expYear = Integer.toString(expYear);
     }
     
-    public int getCvv() {
+    public String getCvv() {
     	return cvv;
     }
     
     public void setCvv(int cvv) {
-    	this.cvv = cvv;
+    	this.cvv = Integer.toString(cvv);
     }
 
     public String getSubtotal() {
