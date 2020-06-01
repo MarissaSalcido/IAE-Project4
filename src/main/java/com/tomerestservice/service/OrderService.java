@@ -18,7 +18,7 @@ public class OrderService {
     private final static String ALL_BILLING_QUERY = "SELECT * FROM billing";
     private final static String ALL_ORDER_ITEMS_QUERY = "SELECT * FROM order_items";
     
-    public static boolean postOrder(Order order) {
+    public static int postOrder(Order order) {
     	boolean insertIntoCustomers = false;
     	boolean insertIntoBilling = false;
     	boolean insertIntoOrderItems = false;
@@ -78,7 +78,12 @@ public class OrderService {
             e.printStackTrace();
         }
 
-    	return (insertIntoCustomers && insertIntoBilling && insertIntoOrderItems);
+    	if (insertIntoCustomers && insertIntoBilling && insertIntoOrderItems) {
+    		return orderId;
+    	}
+    	else {
+    		return -1;
+    	}
     }
 
     public static Order getOrderById(int orderId) {

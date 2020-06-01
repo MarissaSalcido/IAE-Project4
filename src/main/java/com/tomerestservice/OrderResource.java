@@ -14,17 +14,20 @@ import java.util.List;
  *
  */
 //todos will be the pathsegment that precedes any path segment specified by @Path on a method.
-@Path("/orders")
+@Path("/order")
 public class OrderResource {
     //This method represents an endpoint with the URL /todos and a POST request.
     // Since there is no @PathParam mentioned, the /todos as a relative path and a POST request will invoke this method.
-/*    @POST
+    @POST
     @Consumes({MediaType.APPLICATION_JSON}) //This method accepts a request of the JSON type
-    public Response addOrder(Order order) {
-
+    public Response addOrder(Order newOrder) {
+    	
+    	int orderId = OrderService.postOrder(newOrder);
+    	
         //The todo object here is automatically constructed from the json request. Jersey is so cool!
-        if(OrderService.AddOrder(order)) {
-            return Response.ok().entity("TODO Added Successfully").build();
+        if(orderId > 0) {
+        	// Retrieve the order using getById and place in a new object called order 
+            return Response.ok(OrderService.getOrderById(orderId), MediaType.APPLICATION_JSON).build();
         }
 
         // Return an Internal Server error because something wrong happened. This should never be executed
@@ -34,7 +37,7 @@ public class OrderResource {
     }
 	
     //Similar to the method above.
-    @POST
+/*    @POST
     @Consumes({MediaType.APPLICATION_FORM_URLENCODED}) //This method accepts form parameters.
     //If you were to send a POST through a form submit, this method would be called.
     public Response addOrder(@FormParam("summary") String summary,
