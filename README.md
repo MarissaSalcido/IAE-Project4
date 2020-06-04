@@ -1,5 +1,11 @@
 # INF124/CS137 Project
 
+## Group Members
+- Jessica Cheng&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(76401472)
+- Hugo Ruiz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(66212078)
+- Don Cung&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(91314588)
+- Marissa Yvonne Salcido&nbsp; (86569875)
+
 # REST APIs
 ### Description (TEMPLATE - Copy and paste to add another method)
 1. Method Type
@@ -7,16 +13,92 @@
 3. Sample Response
 4. Sample Request (if applicable)
 
+### Description: Post a new order
+###### 1. Method Type:
+Post
+###### 2. Request URL:
+http://localhost:8080/TomeRestService/tomerest/orders
+###### 3. Sample Response:
+{
+    "orderId": 30,
+    "firstName": "Test2",
+    "lastName": "Lovelace",
+    "phoneNum": "9999999999",
+    "address1": "9 Computing Way",
+    "address2": "",
+    "city": "Irvine",
+    "state": "CA",
+    "zipcode": "92617",
+    "shippingMethod": "expedited",
+    "cardType": "Visa",
+    "cardNumber": "9999999999999999",
+    "expMonth": "1",
+    "expYear": "2021",
+    "cvv": "999",
+    "subtotal": "910.23",
+    "tax": "88.80",
+    "shippingCost": "10.99",
+    "total": "1010.23",
+    "orderItems": [
+        {
+            "productId": "INF5678",
+            "imageSrc": "images/1945.jpg",
+            "itemName": "COUNTDOWN 1945",
+            "price": "15.30",
+            "quantity": "1"
+        },
+        {
+            "productId": "INF1234",
+            "imageSrc": "images/a_stroke_of_malice.jpg",
+            "itemName": "A STROKE OF MALICE",
+            "price": "15.30",
+            "quantity": "2"
+        }
+    ]
+}
+###### 4. Sample Request (if applicable):
+{
+	"firstName": "Test2",
+	"lastName": "Lovelace",
+	"phoneNum": "9999999999",
+	"address1": "9 Computing Way",
+	"address2": "",
+	"city": "Irvine",
+	"state": "CA",
+	"zipcode": "92617",
+	"shippingMethod": "expedited",
+	"cardType": "Visa",
+	"cardNumber": "9999999999999999",
+	"expMonth": "1",
+	"expYear": "2021",
+	"cvv": "999",
+	"subtotal": "910.23",
+	"tax": "88.80",
+	"shippingCost": "10.99",
+	"total": "1010.23",
+	"orderItems": 
+		[
+			{
+				"productId": "INF5678", 
+				"imageSrc": "images/1945.jpg", 
+				"itemName": "COUNTDOWN 1945",
+				"price": "15.30",
+				"quantity": "1"
+			},
+			{
+				"productId": "INF1234", 
+				"imageSrc": "images/a_stroke_of_malice.jpg",
+				"itemName": "A STROKE OF MALICE", 
+				"price": "15.30", 
+				"quantity": "2"
+			}
+		]
+}
+	
 
 
 
 
-
-## Group Members
-- Jessica Cheng&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(76401472)
-- Hugo Ruiz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(66212078)
-- Don Cung&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(91314588)
-- Marissa Yvonne Salcido&nbsp; (86569875)
 
 ## Website - PA3 IS NOT DEPLOYED IN OPENLAB. WE HAVE SIGNED UP FOR A WEBSITE DEMONSTRATION.
 ### Link: Not applicable
