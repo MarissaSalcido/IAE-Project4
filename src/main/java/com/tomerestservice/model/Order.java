@@ -28,10 +28,10 @@ public class Order {
     private String expMonth;
     private String expYear;
     private String cvv;
-    private String subtotal;
-    private String tax;
-    private String shippingCost;
-    private String total;
+    private double subtotal;
+    private double tax;
+    private double shippingCost;
+    private double total;
     
 
     // For order_items table
@@ -157,35 +157,35 @@ public class Order {
     	this.cvv = cvv;
     }
 
-    public String getSubtotal() {
+    public double getSubtotal() {
     	return subtotal;
     }
     
-    public void setSubtotal(String subtotal) {
+    public void setSubtotal(double subtotal) {
     	this.subtotal = subtotal;
     }
 
-    public String getTax() {
+    public double getTax() {
     	return tax;
     }
     
-    public void setTax(String tax) {
+    public void setTax(double tax) {
     	this.tax = tax;
     }
         
-    public String getShippingCost() {
+    public double getShippingCost() {
     	return shippingCost;
     }
     
-    public void setShippingCost(String shippingCost) {
+    public void setShippingCost(double shippingCost) {
     	this.shippingCost = shippingCost;
     }
     
-    public String getTotal() {
+    public double getTotal() {
     	return total;
     }
     
-    public void setTotal(String total) {
+    public void setTotal(double total) {
     	this.total = total;
     }
     

@@ -27,7 +27,7 @@ public class OrderService {
         String sql = "INSERT INTO customers (first_name, last_name, phone_num, address_1, address_2, city, state, zipcode, shipping_method)" +
                 		"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         Connection connection = DatabaseConnector.getConnection();
-        int orderId = DatabaseUtils.performDBUpdateAndReturnOrderId(connection, sql, order.getFirstName(), order.getLastName(), order.getPhoneNum(), order.getAddress1(), order.getAddress2(), order.getCity(), order.getState(), order.getZipcode(), order.getShippingMethod());
+        int orderId = DatabaseUtils.performDBUpdateForCustomers(connection, sql, order.getFirstName(), order.getLastName(), order.getPhoneNum(), order.getAddress1(), order.getAddress2(), order.getCity(), order.getState(), order.getZipcode(), order.getShippingMethod());
     	
         System.out.println("Order Id: "+ orderId);
         // If order info was not successfully inserted into customers table, return false
@@ -40,7 +40,7 @@ public class OrderService {
         	
         	sql = "INSERT INTO billing (order_id, card_type, card_number, exp_month, exp_year, cvv, subtotal, tax, shipping_cost, total)" +
             		"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        	insertIntoBilling = DatabaseUtils.performDBUpdateWithOrderId(connection, sql, orderId, order.getCardType(), order.getCardNumber(), order.getExpMonth(), order.getExpYear(), order.getCvv(), order.getSubtotal(), order.getTax(), order.getShippingCost(), order.getTotal());
+        	insertIntoBilling = DatabaseUtils.performDBUpdateForBilling(connection, sql, orderId, order.getCardType(), order.getCardNumber(), order.getExpMonth(), order.getExpYear(), order.getCvv(), order.getSubtotal(), order.getTax(), order.getShippingCost(), order.getTotal());
         	System.out.println("insertIntoBilling: " + insertIntoBilling);
         	
         	// If not successfully inserted into billing table, remove entry in customer table to preserve idempotent of the database
@@ -56,7 +56,7 @@ public class OrderService {
    	        	for (int i = 0; i < itemsList.size(); ++i) {
    	        		OrderItem item = itemsList.get(i);
    	        		
-		        	insertIntoOrderItems = DatabaseUtils.performDBUpdateWithOrderId(connection, sql, orderId, item.getProductId(), item.getImageSrc(), item.getItemName(), item.getPrice(), item.getQuantity());
+		        	insertIntoOrderItems = DatabaseUtils.performDBUpdateForOrderItems(connection, sql, orderId, item.getProductId(), item.getImageSrc(), item.getItemName(), item.getPrice(), item.getQuantity());
 		        
 		        	// If not successfully inserted into  table, remove entry in customer table to preserve idempotent of the database
 		        	if (!insertIntoOrderItems) {
@@ -126,10 +126,10 @@ public class OrderService {
 	        	order.setExpMonth(resultSet.getString("exp_month"));
 	        	order.setExpYear(resultSet.getString("exp_year"));
 	        	order.setCvv(resultSet.getString("cvv"));
-	        	order.setSubtotal(resultSet.getString("subtotal"));
-	        	order.setTax(resultSet.getString("tax"));
-	        	order.setShippingCost(resultSet.getString("shipping_cost"));
-	        	order.setTotal(resultSet.getString("total"));
+	        	order.setSubtotal(resultSet.getDouble("subtotal"));
+	        	order.setTax(resultSet.getDouble("tax"));
+	        	order.setShippingCost(resultSet.getDouble("shipping_cost"));
+	        	order.setTotal(resultSet.getDouble("total"));
 	        	billingResult = true;
 	        }
 	        
@@ -144,8 +144,8 @@ public class OrderService {
 		    		itemFromDB.setProductId(resultSet.getString("product_id"));
 		    		itemFromDB.setImageSrc(resultSet.getString("image_src"));
 		    		itemFromDB.setItemName(resultSet.getString("item_name"));
-		    		itemFromDB.setPrice(resultSet.getString("price"));
-		    		itemFromDB.setQuantity(resultSet.getString("quantity"));
+		    		itemFromDB.setPrice(resultSet.getDouble("price"));
+		    		itemFromDB.setQuantity(resultSet.getInt("quantity"));
 		    		itemsList.add(itemFromDB);
 			    	
 			    	orderItemsResult = true;
