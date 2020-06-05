@@ -20,7 +20,7 @@ Post
 http://localhost:8080/TomeRestService/tomerest/orders
 ###### 3. Sample Response:
 {
-    "orderId": 30,
+    "orderId": 31,
     "firstName": "Test2",
     "lastName": "Lovelace",
     "phoneNum": "9999999999",
@@ -35,24 +35,24 @@ http://localhost:8080/TomeRestService/tomerest/orders
     "expMonth": "1",
     "expYear": "2021",
     "cvv": "999",
-    "subtotal": "910.23",
-    "tax": "88.80",
-    "shippingCost": "10.99",
-    "total": "1010.23",
+    "subtotal": 910.23,
+    "tax": 88.8,
+    "shippingCost": 10.99,
+    "total": 1010.23,
     "orderItems": [
         {
             "productId": "INF5678",
             "imageSrc": "images/1945.jpg",
             "itemName": "COUNTDOWN 1945",
-            "price": "15.30",
-            "quantity": "1"
+            "price": 15.3,
+            "quantity": 1
         },
         {
             "productId": "INF1234",
             "imageSrc": "images/a_stroke_of_malice.jpg",
             "itemName": "A STROKE OF MALICE",
-            "price": "15.30",
-            "quantity": "2"
+            "price": 15.3,
+            "quantity": 2
         }
     ]
 }
@@ -72,32 +72,28 @@ http://localhost:8080/TomeRestService/tomerest/orders
 	"expMonth": "1",
 	"expYear": "2021",
 	"cvv": "999",
-	"subtotal": "910.23",
-	"tax": "88.80",
-	"shippingCost": "10.99",
-	"total": "1010.23",
+	"subtotal": 910.23,
+	"tax": 88.80,
+	"shippingCost": 10.99,
+	"total": 1010.23,
 	"orderItems": 
 		[
 			{
 				"productId": "INF5678", 
 				"imageSrc": "images/1945.jpg", 
 				"itemName": "COUNTDOWN 1945",
-				"price": "15.30",
-				"quantity": "1"
+				"price": 15.30,
+				"quantity": 1
 			},
 			{
 				"productId": "INF1234", 
 				"imageSrc": "images/a_stroke_of_malice.jpg",
 				"itemName": "A STROKE OF MALICE", 
-				"price": "15.30", 
-				"quantity": "2"
+				"price": 15.30, 
+				"quantity": 2
 			}
 		]
 }
-	
-
-
-
 
 
 ## Website - PA4 IS NOT DEPLOYED IN OPENLAB. WE HAVE SIGNED UP FOR A WEBSITE DEMONSTRATION.
@@ -128,7 +124,7 @@ Openlab Deployment:
    - By clicking on each products image, you will be led to a detailed product description
    - At the bottom of the Catalog page, it shows the 5 most recent books viewed.
 3. Product Description Page(s) (from the catalog)
-   - Includes book description, price, format, etc and a product code below the title (needed to purchase book)
+   - Includes book description, price, format, etc and a product code below the title
    - Contains a field to purchase an x quantity of books
 4. Cart
    - Displays a list of all items in the shopping cart and shows a subtotal
@@ -147,8 +143,8 @@ Openlab Deployment:
 ## Project 3
 ### Requirements
 - Requirement 1 is completed in the catalog.jsp on the catalog page.
-- Requirement 2 
-- Requirement 3 
+- Requirement 2 is completed in TomeRestService.
+- Requirement 3 is completed in TomeClient.
 
 ### Citations
 Landing Page:
