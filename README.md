@@ -17,7 +17,7 @@
 ###### 1. Method Type:
 Post
 ###### 2. Request URL:
-http://localhost:8080/TomeRestService/tomerest/orders
+http://localhost:8080/TomeRestService/tomerest/order
 ###### 3. Sample Response:
 {
     "orderId": 31,
