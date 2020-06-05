@@ -100,7 +100,7 @@ http://localhost:8080/TomeRestService/tomerest/orders
 
 
 
-## Website - PA3 IS NOT DEPLOYED IN OPENLAB. WE HAVE SIGNED UP FOR A WEBSITE DEMONSTRATION.
+## Website - PA4 IS NOT DEPLOYED IN OPENLAB. WE HAVE SIGNED UP FOR A WEBSITE DEMONSTRATION.
 ### Link: Not applicable
 ### Database Password: Not applicable
 ### Deploying Assignment 3
@@ -123,11 +123,10 @@ Openlab Deployment:
    - a nav anchor to the products catalog; through the catalog tab in the header and the "view catalog" in the body
    - a nav anchor to the about us page; which contains our business/personal description
    - **View Collection** will take you to the catalog produced by a servlet and start a session to keep track of the end user
-   - **Check out the products you have seen!** will display the last (up to 5) products that the user has visited. If this button is clicked on 
-     before seeing any actual products (before clicking on view collection), then it will display a message that says "You haven't check out any products yet!".
 2. The Catalog Page
    - Includes 10 products
-   - By clicking on the button "Click to Buy", you will be led to a detailed product description
+   - By clicking on each products image, you will be led to a detailed product description
+   - At the bottom of the Catalog page, it shows the 5 most recent books viewed.
 3. Product Description Page(s) (from the catalog)
    - Includes book description, price, format, etc and a product code below the title (needed to purchase book)
    - Contains a field to purchase an x quantity of books
@@ -147,13 +146,9 @@ Openlab Deployment:
 
 ## Project 3
 ### Requirements
-- Requirement 1 has two servlets (products and SessionTracking). The products servlet will include SessionTracking, and session tracking contains 
-  the use of include() to call/include the ProductDetailServlet.
-- Requirement 2 When a user clicks on a product from the Catalog, the user can specify the quantity wanted and add the product to their cart. 
-- Requirement 3 are covered in the Cart, CheckOut, OrderProcessing, and OrderConf servlets.
-   - Showing items in the shopping cart, the total price, and filling in form information are implemented in Cart and CheckOut
-   - When the CheckOut page is submitted, it is processed in the OrderProcessing servlet, where the information is inputted into the database.
-   - After the information is inputted into the database, the OrderProcessing uses the servlet "forward" feature to forward to the OrderConf servlet. The Order Conf servlet shows the Order Confirmation page.
+- Requirement 1 is completed in the catalog.jsp on the catalog page.
+- Requirement 2 
+- Requirement 3 
 
 ### Citations
 Landing Page:
@@ -172,9 +167,9 @@ All pages:
    * Roboto Font used throughout the page: https://fonts.google.com/
   
 ### Contributions
-- **Hugo** and **Don** worked on Requirement 1, products.java and SessionTracking.java
-- **Marissa** worked on Requirement 2, ProductDetailServlet.java, DatabaseAccess.java, and slightly modified the styling for each page from the html generated in each servlet.
-- **Jessica** worked on Requirement 3 in Cart.java, CheckOut.java, OrderProcessing.java, and OrderConf.java servlets. She also contributed to DBInfo.java, Book.java, DatabaseAccess.java, and Item.java.
+- **Marissa** worked on Requirement 1.
+- **Hugo** and **Jessica** worked on Requirement 2.
+- **Marissa**, **Don**, and **Jessica** worked on Requirement 3.
 
 **Note:** We all contributed in code review and debugging for each individual page.
  
