@@ -36,16 +36,15 @@ public class OrderService {
         }
         else {
         	insertIntoCustomers = true;
-//        	order.setOrderId(orderId);
+        	order.setOrderId(orderId);
         	
         	sql = "INSERT INTO billing (order_id, card_type, card_number, exp_month, exp_year, cvv, subtotal, tax, shipping_cost, total)" +
             		"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        	insertIntoBilling = DatabaseUtils.performDBUpdateForBilling(connection, sql, orderId, order.getCardType(), order.getCardNumber(), order.getExpMonth(), order.getExpYear(), order.getCvv(), order.getSubtotal(), order.getTax(), order.getShippingCost(), order.getTotal());
-        	System.out.println("insertIntoBilling: " + insertIntoBilling);
+        	insertIntoBilling = DatabaseUtils.performDBUpdateForBilling(connection, sql, order.getOrderId(), order.getCardType(), order.getCardNumber(), order.getExpMonth(), order.getExpYear(), order.getCvv(), order.getSubtotal(), order.getTax(), order.getShippingCost(), order.getTotal());
         	
-        	// If not successfully inserted into billing table, remove entry in customer table to preserve idempotent of the database
+        	// If not successfully inserted into billing table, remove entry in customer table for this order to preserve idempotent of the database
         	if (!insertIntoBilling) {
-        		///////////////////////////// Delete entry in customer table
+        		deleteCustomersEntry(connection, order.getOrderId());
         	}
         	else {
    	        	sql = "INSERT INTO order_items (order_id, product_id, image_src, item_name, price, quantity)" +
@@ -58,14 +57,21 @@ public class OrderService {
    	        		
 		        	insertIntoOrderItems = DatabaseUtils.performDBUpdateForOrderItems(connection, sql, orderId, item.getProductId(), item.getImageSrc(), item.getItemName(), item.getPrice(), item.getQuantity());
 		        
-		        	// If not successfully inserted into  table, remove entry in customer table to preserve idempotent of the database
+		        	// If not successfully able to insert an order item into the order_items table, remove entry in all tables to preserve idempotent of the database
 		        	if (!insertIntoOrderItems) {
-		        		///////////////////////////// Delete entry in customer table
-		        		////////// Delete entry in billing table
-		        		///// Delete any entries in order table if int i > 0
+		        		// Delete entry in customers table for this order
+		        		deleteCustomersEntry(connection, order.getOrderId());
+		        		
+		        		// Delete entry in billing table for this order
+		        		deleteBillingEntry(connection, order.getOrderId());
+		        		
+		        		// If i > 0, then delete any entries in order table for this order
+		        		if (i > 0) {
+		        			deleteOrderItems(connection, order.getOrderId());		        			
+		        		}
 		        		
 		        		// To get out of the loop inserting each item into the order_items table
-		        		// i = itemsList.size();
+		        		i = itemsList.size();
 		        	}
    	        	}
         	}
@@ -73,7 +79,7 @@ public class OrderService {
         
         try {
 
-            // We will always close the connection once we are done interacting with the Database.
+            // Close database connection
             connection.close();
         } 
         catch (SQLException e) {
@@ -89,7 +95,7 @@ public class OrderService {
     }
 
     public static Order getOrderById(int orderId) {
-        //Get a new connection object before going forward with the JDBC invocation.
+        // Establishing a new connection
         Connection connection = DatabaseConnector.getConnection();
         boolean customerResult = false;
         boolean billingResult = false;
@@ -168,7 +174,7 @@ public class OrderService {
             finally {
                 try {
 
-                    // We will always close the connection once we are done interacting with the Database.
+                    // Close database connection
                     connection.close();
                 } 
                 catch (SQLException e) {
@@ -181,22 +187,44 @@ public class OrderService {
 
     }
     
-/*    public static boolean deleteExample(Example retrievedExample) {
+    private static boolean deleteCustomersEntry(Connection connection, int orderId) {
 
-        String sql = "DELETE FROM TODOS WHERE TODO_ID=?;";
+        String sql = "DELETE FROM customers WHERE order_id=?;";
 
-        Connection connection = DatabaseConnector.getConnection();
-
-        boolean updateStatus = DatabaseUtils.performDBUpdate(connection, sql, String.valueOf(retrievedExample.getId()));
-
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        boolean updateStatus = DatabaseUtils.performDelete(connection, sql, orderId);
+        
+        if (!updateStatus) {
+        	System.out.println("Error deleting " + orderId + " entry from customers table");
         }
 
         return updateStatus;
-    }*/
+    }
+    
+    private static boolean deleteBillingEntry(Connection connection, int orderId) {
+
+        String sql = "DELETE FROM billing WHERE order_id=?;";
+
+        boolean updateStatus = DatabaseUtils.performDelete(connection, sql, orderId);
+        
+        if (!updateStatus) {
+        	System.out.println("Error deleting " + orderId + " entry from billing table");
+        }
+
+        return updateStatus;
+    }
+    
+    private static boolean deleteOrderItems(Connection connection, int orderId) {
+
+        String sql = "DELETE FROM order_items WHERE order_id=?;";
+
+        boolean updateStatus = DatabaseUtils.performDelete(connection, sql, orderId);
+        
+        if (!updateStatus) {
+        	System.out.println("Error deleting " + orderId + " entries from order_items table");
+        }
+
+        return updateStatus;
+    }
 }
 
 

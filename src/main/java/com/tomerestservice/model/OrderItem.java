@@ -3,7 +3,6 @@ package com.tomerestservice.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "orderitem")
-//You will need to create a Java Object. Jersey uses these to construct requests and responses.
 
 public class OrderItem {
 	private String productId;

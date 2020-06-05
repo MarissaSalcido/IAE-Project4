@@ -137,4 +137,20 @@ public class DatabaseUtils {
             return false;
         }
     }
+    
+    public static boolean performDelete(Connection connection, String sql, int orderId) {
+        PreparedStatement preparedStatement = null;
+
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setInt(1, orderId);
+
+            return preparedStatement.executeUpdate() > 0 ;
+
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+
 }

@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "order")
-//You will need to create a Java Object. Jersey uses these to construct requests and responses.
 
 public class Order {
     private int orderId = 0;
