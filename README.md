@@ -144,7 +144,7 @@ Openlab Deployment:
 ### Requirements
 - Requirement 1 is completed in the catalog.jsp on the catalog page.
 - Requirement 2 is completed in TomeRestService.
-- Requirement 3 is completed in TomeClient.
+- Requirement 3 is completed in TomeClient's OrderProcessing.java, 
 
 ### Citations
 Landing Page:
