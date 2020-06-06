@@ -8,7 +8,6 @@ import java.util.List;
 
 import com.tomerestservice.db.DatabaseConnector;
 import com.tomerestservice.db.DatabaseUtils;
-import com.tomerestservice.model.Example;
 import com.tomerestservice.model.Order;
 import com.tomerestservice.model.OrderItem;
 
