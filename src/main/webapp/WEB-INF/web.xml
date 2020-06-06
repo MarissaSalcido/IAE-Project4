@@ -14,6 +14,11 @@
       </init-param>
       <load-on-startup>1</load-on-startup>
     </servlet>
+    <servlet>
+    	<servlet-name>Database Initialization</servlet-name>
+    	<servlet-class>DatabaseAccess</servlet-class>
+    	<load-on-startup>0</load-on-startup>
+    </servlet>
     <servlet-mapping>
       <servlet-name>Jersey REST Service</servlet-name>
       <!-- This is the URL pattern for the target path segment that will precede the path segment specified
