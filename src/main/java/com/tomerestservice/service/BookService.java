@@ -29,7 +29,7 @@ public class BookService {
                     book.setAuthor(resultSet.getString("author"));                   	
                     book.setGenre(resultSet.getString("genre"));
                     book.setName(resultSet.getString("name"));
-                    book.setPrice(resultSet.getInt("price"));
+                    book.setPrice(resultSet.getFloat("price"));
                     book.setType(resultSet.getString("type"));
                     book.setImage(resultSet.getString("image"));
                     book.setSummary(resultSet.getString("summary"));
@@ -68,7 +68,7 @@ public class BookService {
                     book.setAuthor(resultSet.getString("author"));                   	
                     book.setGenre(resultSet.getString("genre"));
                     book.setName(resultSet.getString("name"));
-                    book.setPrice(resultSet.getInt("price"));
+                    book.setPrice(resultSet.getFloat("price"));
                     book.setType(resultSet.getString("type"));
                     book.setImage(resultSet.getString("image"));
                     book.setSummary(resultSet.getString("summary"));
