@@ -1,10 +1,9 @@
 <html>
 <head>
-    <title>Form to create a new resource</title>
+    <title>Tome REST Service</title>
 </head>
 <body>
-<!-- This form will submit a POST request and the POST method defined in TodoResource will respond to it -->
-<h2>Create a new TODO</h2>
+<h2>Tome REST Service</h2>
 <form action="../TomeRestService/tomerest/examples" method="POST">
     <label for="summary">Summary</label>
     <input id="summary" name="summary" />
