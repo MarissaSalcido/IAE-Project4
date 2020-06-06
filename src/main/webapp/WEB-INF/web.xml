@@ -16,7 +16,7 @@
     </servlet>
     <servlet>
     	<servlet-name>Database Initialization</servlet-name>
-    	<servlet-class>DatabaseAccess</servlet-class>
+    	<servlet-class>com.tomerestservice.db.DatabaseAccess</servlet-class>
     	<load-on-startup>0</load-on-startup>
     </servlet>
     <servlet-mapping>
