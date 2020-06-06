@@ -8,17 +8,17 @@
 
 # REST APIs
 ### Description (TEMPLATE - Copy and paste to add another method)
-1. Method Type
-2. Request URL
-3. Sample Response
-4. Sample Request (if applicable)
+###### i. Method Type
+###### ii. Request URL
+###### iii. Sample Response
+###### iv. Sample Request (if applicable)
 
 ### Description: Post a new order
-###### 1. Method Type:
+###### i. Method Type:
 Post
-###### 2. Request URL:
+###### ii. Request URL:
 http://localhost:8080/TomeRestService/tomerest/order
-###### 3. Sample Response:
+###### iii. Sample Response:
 HTTP/1.1 200 OK
 Date: Wed, 27 May 2020 06:08:22 GMT
 Content-Type: application/json
@@ -62,7 +62,7 @@ Cache-Control: no-cache
     ]
 }
 
-###### 4. Sample Request (if applicable):
+###### iv. Sample Request (if applicable):
 POST /TomeRestService/tomerest/order HTTP/1.1
 Host: localhost:8080
 Content-Type: application/json
