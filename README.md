@@ -8,19 +8,24 @@
 
 # REST APIs
 ### Description (TEMPLATE - Copy and paste to add another method)
-1. Method Type
-2. Request URL
-3. Sample Response
-4. Sample Request (if applicable)
+###### i. Method Type
+###### ii. Request URL
+###### iii. Sample Response
+###### iv. Sample Request (if applicable)
 
 ### Description: Post a new order
-###### 1. Method Type:
+###### i. Method Type:
 Post
-###### 2. Request URL:
+###### ii. Request URL:
 http://localhost:8080/TomeRestService/tomerest/order
-###### 3. Sample Response:
+###### iii. Sample Response:
+HTTP/1.1 200 OK
+Date: Wed, 27 May 2020 06:08:22 GMT
+Content-Type: application/json
+Access-Control-Max-Age: 1728000
+Cache-Control: no-cache
 {
-    "orderId": 31,
+    "orderId": 12,
     "firstName": "Test2",
     "lastName": "Lovelace",
     "phoneNum": "9999999999",
@@ -56,7 +61,11 @@ http://localhost:8080/TomeRestService/tomerest/order
         }
     ]
 }
-###### 4. Sample Request (if applicable):
+
+###### iv. Sample Request (if applicable):
+POST /TomeRestService/tomerest/order HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
 {
 	"firstName": "Test2",
 	"lastName": "Lovelace",
@@ -72,10 +81,10 @@ http://localhost:8080/TomeRestService/tomerest/order
 	"expMonth": "1",
 	"expYear": "2021",
 	"cvv": "999",
-	"subtotal": 910.23,
-	"tax": 88.80,
+	"subtotal": 910.2300006,
+	"tax": 88.8000006,
 	"shippingCost": 10.99,
-	"total": 1010.23,
+	"total": 1010.230003,
 	"orderItems": 
 		[
 			{
@@ -94,7 +103,7 @@ http://localhost:8080/TomeRestService/tomerest/order
 			}
 		]
 }
-
+	
 
 ## Website - PA4 IS NOT DEPLOYED IN OPENLAB. WE HAVE SIGNED UP FOR A WEBSITE DEMONSTRATION.
 ### Link: Not applicable
