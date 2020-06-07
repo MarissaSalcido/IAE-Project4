@@ -122,6 +122,8 @@ Content-Length: 3876
 ###### iv. Sample Request (if applicable):
 GET http://localhost:8080/TomeRestService/tomerest/books
 
+&nbsp;
+&nbsp;
 
 ### Description: Get a book by product id
 ###### i. Method Type
@@ -147,6 +149,8 @@ Content-Length: 259
 ###### iv. Sample Request (if applicable)
 GET http://localhost:8080/TomeRestService/tomerest/books/INF5678
 
+&nbsp;
+&nbsp;
 
 ### Description: GET Book with product code INF5678
 ###### i. Method Type
@@ -363,6 +367,9 @@ Content-Length: 351
 }
 ###### iv. Sample Request (if applicable)
 GET http://localhost:8080/TomeRestService/tomerest/books/INF9782
+
+&nbsp;
+&nbsp;
 
 ### Description: Post a new order
 ###### i. Method Type:
