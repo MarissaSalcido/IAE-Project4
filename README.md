@@ -128,7 +128,7 @@ Content-Length: 3876
 ###### iv. Sample Request (if applicable):
 GET http://localhost:8080/TomeRestService/tomerest/books
 
-### Description GET Book with product code INF5678
+### Description: GET Book with product code INF5678
 ###### i. Method Type
 GET
 ###### ii. Request URL
@@ -151,7 +151,7 @@ Content-Length: 259
 ###### iv. Sample Request (if applicable)
 GET http://localhost:8080/TomeRestService/tomerest/books/INF5678
 
-### Description GET Book with product code INF1928
+### Description: GET Book with product code INF1928
 ###### i. Method Type
 GET
 ###### ii. Request URL
@@ -174,7 +174,7 @@ Content-Length: 451
 ###### iv. Sample Request (if applicable)
 GET http://localhost:8080/TomeRestService/tomerest/books/INF5678
 
-### Description GET Book with product code INF1234
+### Description: GET Book with product code INF1234
 ###### i. Method Type
 GET
 ###### ii. Request URL
@@ -197,7 +197,7 @@ Content-Length: 357
 ###### iv. Sample Request (if applicable)
 GET http://localhost:8080/TomeRestService/tomerest/books/INF1234
 
-### Description GET Book with product code INF2837
+### Description: GET Book with product code INF2837
 ###### i. Method Type
 GET
 ###### ii. Request URL
@@ -205,7 +205,7 @@ http://localhost:8080/TomeRestService/tomerest/books/INF2837
 ###### iii. Sample Response
 ###### iv. Sample Request (if applicable)
 
-### Description GET Book with product code INF1357
+### Description: GET Book with product code INF1357
 ###### i. Method Type
 GET
 ###### ii. Request URL
@@ -228,7 +228,7 @@ Content-Length: 378
 ###### iv. Sample Request (if applicable)
 GET http://localhost:8080/TomeRestService/tomerest/books/INF2837
 
-### Description GET Book with product code INF5498
+### Description: GET Book with product code INF5498
 ###### i. Method Type
 GET
 ###### ii. Request URL
@@ -252,7 +252,7 @@ Content-Length: 470
 ###### iv. Sample Request (if applicable)
 GET http://localhost:8080/TomeRestService/tomerest/books/5498
 
-### Description GET Book with product code INF3746
+### Description: GET Book with product code INF3746
 ###### i. Method Type
 GET
 ###### ii. Request URL
@@ -275,7 +275,7 @@ Content-Length: 417
 ###### iv. Sample Request (if applicable)
 GET http://localhost:8080/TomeRestService/tomerest/books/INF3746
 
-### Description GET Book with product code INF2468
+### Description: GET Book with product code INF2468
 ###### i. Method Type
 GET
 ###### ii. Request URL
@@ -298,7 +298,7 @@ Content-Length: 343
 ###### iv. Sample Request (if applicable)
 GET http://localhost:8080/TomeRestService/tomerest/books/INF3746
 
-### Description GET Book with product code INF1245
+### Description: GET Book with product code INF1245
 ###### i. Method Type
 GET
 ###### ii. Request URL
@@ -321,7 +321,7 @@ Content-Length: 389
 ###### iv. Sample Request (if applicable)
 GET http://localhost:8080/TomeRestService/tomerest/books/INF1245
 
-### Description GET Book with product code INF9782
+### Description: GET Book with product code INF9782
 ###### i. Method Type
 GET
 ###### ii. Request URL
