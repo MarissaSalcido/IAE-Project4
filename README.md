@@ -290,7 +290,7 @@ Openlab Deployment:
    - Includes information on our company and motto
    - Includes information on group member names/pictures along with student IDs
 
-## Project 3
+## Project 4
 ### Requirements
 - Requirement 1 is completed in the catalog.jsp on the catalog page.
 - Requirement 2 is completed in TomeRestService.
