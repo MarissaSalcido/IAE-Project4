@@ -132,7 +132,7 @@ GET http://localhost:8080/TomeRestService/tomerest/books
 ###### i. Method Type
 GET
 ###### ii. Request URL
-http://localhost:7000/TomeRestService/tomerest/books/INF5678
+http://localhost:8080/TomeRestService/tomerest/books/INF5678
 ###### iii. Sample Response
 HTTP/1.1 200 OK
 Date: Sun, 07 Jun 2020 03:42:06 GMT
@@ -149,13 +149,13 @@ Content-Length: 259
     "summary": "An electrifying behind-the-scenes account of the 116 days leading up to the American attack on Hiroshima."
 }
 ###### iv. Sample Request (if applicable)
-GET http://localhost:7000/TomeRestService/tomerest/books/INF5678
+GET http://localhost:8080/TomeRestService/tomerest/books/INF5678
 
 ### Description GET Book with product code INF1928
 ###### i. Method Type
 GET
 ###### ii. Request URL
-http://localhost:7000/TomeRestService/tomerest/books/INF1928
+http://localhost:8080/TomeRestService/tomerest/books/INF1928
 ###### iii. Sample Response
 HTTP/1.1 200 OK
 Date: Sun, 07 Jun 2020 03:43:50 GMT
@@ -172,13 +172,13 @@ Content-Length: 451
     "summary": "From the <i>New York Times</i> bestselling author of <i>Rules of Civility - a transporting novel about a man who is ordered to spend the rest of his life inside a luxury hotel.</i>.. The mega bestseller with more than 2 million readers, soon to be a major television series."
 }
 ###### iv. Sample Request (if applicable)
-GET http://localhost:7000/TomeRestService/tomerest/books/INF5678
+GET http://localhost:8080/TomeRestService/tomerest/books/INF5678
 
 ### Description GET Book with product code INF1234
 ###### i. Method Type
 GET
 ###### ii. Request URL
-http://localhost:7000/TomeRestService/tomerest/books/INF1234
+http://localhost:8080/TomeRestService/tomerest/books/INF1234
 ###### iii. Sample Response
 HTTP/1.1 200 OK
 Date: Sun, 07 Jun 2020 03:47:01 GMT
@@ -195,13 +195,13 @@ Content-Length: 357
     "summary": "Lady Kiera Darby and her husband Sebastian Gage are looking forward to celebrating with new friends at an exciting yearly soireey, but they soon learn that murder never takes a holiday."
 }
 ###### iv. Sample Request (if applicable)
-GET http://localhost:7000/TomeRestService/tomerest/books/INF1234
+GET http://localhost:8080/TomeRestService/tomerest/books/INF1234
 
 ### Description GET Book with product code INF2837
 ###### i. Method Type
 GET
 ###### ii. Request URL
-http://localhost:7000/TomeRestService/tomerest/books/INF2837
+http://localhost:8080/TomeRestService/tomerest/books/INF2837
 ###### iii. Sample Response
 ###### iv. Sample Request (if applicable)
 
@@ -209,7 +209,7 @@ http://localhost:7000/TomeRestService/tomerest/books/INF2837
 ###### i. Method Type
 GET
 ###### ii. Request URL
-http://localhost:7000/TomeRestService/tomerest/books/INF1357
+http://localhost:8080/TomeRestService/tomerest/books/INF1357
 ###### iii. Sample Response
 HTTP/1.1 200 OK
 Date: Sun, 07 Jun 2020 03:48:14 GMT
@@ -226,13 +226,13 @@ Content-Length: 378
     "summary": "On a Tuesday afternoon, Agent Sherlock is driving in downtown Washington when her Volvo is suddently T-boned at an intersection. As her car spins out of control, a man's body slams agains her windshield and then ..."
 }
 ###### iv. Sample Request (if applicable)
-GET http://localhost:7000/TomeRestService/tomerest/books/INF2837
+GET http://localhost:8080/TomeRestService/tomerest/books/INF2837
 
 ### Description GET Book with product code INF5498
 ###### i. Method Type
 GET
 ###### ii. Request URL
-http://localhost:7000/TomeRestService/tomerest/books/5498
+http://localhost:8080/TomeRestService/tomerest/books/5498
 ###### iii. Sample Response
 HTTP/1.1 200 OK
 Date: Sun, 07 Jun 2020 03:49:10 GMT
@@ -250,13 +250,13 @@ Content-Length: 470
 }
 
 ###### iv. Sample Request (if applicable)
-GET http://localhost:7000/TomeRestService/tomerest/books/5498
+GET http://localhost:8080/TomeRestService/tomerest/books/5498
 
 ### Description GET Book with product code INF3746
 ###### i. Method Type
 GET
 ###### ii. Request URL
-http://localhost:7000/TomeRestService/tomerest/books/INF3746
+http://localhost:8080/TomeRestService/tomerest/books/INF3746
 ###### iii. Sample Response
 HTTP/1.1 200 OK
 Date: Sun, 07 Jun 2020 03:50:09 GMT
@@ -273,13 +273,13 @@ Content-Length: 417
     "summary": "From <i>USA today</i> and internationally bestselling author Leonard Goldberg comes <i>The Daughter of Sherlock Holmes</i>, a new thrilling tale of the greate detective's dauighter and her companion Dr. John Watson."
 }
 ###### iv. Sample Request (if applicable)
-GET http://localhost:7000/TomeRestService/tomerest/books/INF3746
+GET http://localhost:8080/TomeRestService/tomerest/books/INF3746
 
 ### Description GET Book with product code INF2468
 ###### i. Method Type
 GET
 ###### ii. Request URL
-http://localhost:7000/TomeRestService/tomerest/books/INF2468
+http://localhost:8080/TomeRestService/tomerest/books/INF2468
 ###### iii. Sample Response
 HTTP/1.1 200 OK
 Date: Sun, 07 Jun 2020 03:51:22 GMT
@@ -296,13 +296,13 @@ Content-Length: 343
     "summary": "This New York Times bestseller intertwines the true tale of the 1983 World's Fair and the cunning serial killer who used to lure his victims to their death."
 }
 ###### iv. Sample Request (if applicable)
-GET http://localhost:7000/TomeRestService/tomerest/books/INF3746
+GET http://localhost:8080/TomeRestService/tomerest/books/INF3746
 
 ### Description GET Book with product code INF1245
 ###### i. Method Type
 GET
 ###### ii. Request URL
-http://localhost:7000/TomeRestService/tomerest/books/INF1245
+http://localhost:8080/TomeRestService/tomerest/books/INF1245
 ###### iii. Sample Response
 HTTP/1.1 200 OK
 Date: Sun, 07 Jun 2020 03:53:13 GMT
@@ -319,13 +319,13 @@ Content-Length: 389
     "summary": "'My favorite kind of whodunit, kept me guessing all the way through, and reminiscent of Agatha Christie at her best'<br><br> - Alex Michaelides, author of the #1 <i>New York Times</i> bestseller <i>The Silent Patient</i>"
 }
 ###### iv. Sample Request (if applicable)
-GET http://localhost:7000/TomeRestService/tomerest/books/INF1245
+GET http://localhost:8080/TomeRestService/tomerest/books/INF1245
 
 ### Description GET Book with product code INF9782
 ###### i. Method Type
 GET
 ###### ii. Request URL
-http://localhost:7000/TomeRestService/tomerest/books/INF9782
+http://localhost:8080/TomeRestService/tomerest/books/INF9782
 ###### iii. Sample Response
 HTTP/1.1 200 OK
 Date: Sun, 07 Jun 2020 03:54:42 GMT
@@ -342,7 +342,7 @@ Content-Length: 351
     "summary": "The #1 New York Times and Wall Street Journal bestseller, named one of the best books of the year by The Boston Globe and National Geographic."
 }
 ###### iv. Sample Request (if applicable)
-GET http://localhost:7000/TomeRestService/tomerest/books/INF9782
+GET http://localhost:8080/TomeRestService/tomerest/books/INF9782
 
 ### Description: Post a new order
 ###### i. Method Type:
