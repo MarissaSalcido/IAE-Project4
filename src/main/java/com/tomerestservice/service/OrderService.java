@@ -21,71 +21,75 @@ public class OrderService {
     	boolean insertIntoCustomers = false;
     	boolean insertIntoBilling = false;
     	boolean insertIntoOrderItems = false;
+    	boolean validFields = validateFields(order);
+    	int orderId = -1;
     	
-    	// Insert order info to into customers table
-        String sql = "INSERT INTO customers (first_name, last_name, phone_num, address_1, address_2, city, state, zipcode, shipping_method)" +
-                		"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        Connection connection = DatabaseConnector.getConnection();
-        int orderId = DatabaseUtils.performDBUpdateForCustomers(connection, sql, order.getFirstName(), order.getLastName(), order.getPhoneNum(), order.getAddress1(), order.getAddress2(), order.getCity(), order.getState(), order.getZipcode(), order.getShippingMethod());
-    	
-        System.out.println("Order Id: "+ orderId);
-        // If order info was not successfully inserted into customers table, return false
-        if (orderId <= 0) {
-        	insertIntoCustomers = false;
-        }
-        else {
-        	insertIntoCustomers = true;
-        	order.setOrderId(orderId);
-        	
-        	sql = "INSERT INTO billing (order_id, card_type, card_number, exp_month, exp_year, cvv, subtotal, tax, shipping_cost, total)" +
-            		"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        	insertIntoBilling = DatabaseUtils.performDBUpdateForBilling(connection, sql, order.getOrderId(), order.getCardType(), order.getCardNumber(), order.getExpMonth(), order.getExpYear(), order.getCvv(), order.getSubtotal(), order.getTax(), order.getShippingCost(), order.getTotal());
-        	
-        	// If not successfully inserted into billing table, remove entry in customer table for this order to preserve idempotent of the database
-        	if (!insertIntoBilling) {
-        		deleteCustomersEntry(connection, order.getOrderId());
-        	}
-        	else {
-   	        	sql = "INSERT INTO order_items (order_id, product_id, image_src, item_name, price, quantity)" +
-	            		"VALUES (?, ?, ?, ?, ?, ?)";
-   	        	
-   	        	List<OrderItem> itemsList = order.getOrderItems();
-   	        	
-   	        	for (int i = 0; i < itemsList.size(); ++i) {
-   	        		OrderItem item = itemsList.get(i);
-   	        		
-		        	insertIntoOrderItems = DatabaseUtils.performDBUpdateForOrderItems(connection, sql, orderId, item.getProductId(), item.getImageSrc(), item.getItemName(), item.getPrice(), item.getQuantity());
-		        
-		        	// If not successfully able to insert an order item into the order_items table, remove entry in all tables to preserve idempotent of the database
-		        	if (!insertIntoOrderItems) {
-		        		// Delete entry in customers table for this order
-		        		deleteCustomersEntry(connection, order.getOrderId());
+    	if (validFields) {
+			// Insert order info to into customers table
+		    String sql = "INSERT INTO customers (first_name, last_name, phone_num, address_1, address_2, city, state, zipcode, shipping_method)" +
+		            		"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		    Connection connection = DatabaseConnector.getConnection();
+		    orderId = DatabaseUtils.performDBUpdateForCustomers(connection, sql, order.getFirstName(), order.getLastName(), order.getPhoneNum(), order.getAddress1(), order.getAddress2(), order.getCity(), order.getState(), order.getZipcode(), order.getShippingMethod());
+			
+		    System.out.println("Order Id: "+ orderId);
+		    // If order info was not successfully inserted into customers table, return false
+		    if (orderId <= 0) {
+		    	insertIntoCustomers = false;
+		    }
+		    else {
+		    	insertIntoCustomers = true;
+		    	order.setOrderId(orderId);
+		    	
+		    	sql = "INSERT INTO billing (order_id, card_type, card_number, exp_month, exp_year, cvv, subtotal, tax, shipping_cost, total)" +
+		        		"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		    	insertIntoBilling = DatabaseUtils.performDBUpdateForBilling(connection, sql, order.getOrderId(), order.getCardType(), order.getCardNumber(), order.getExpMonth(), order.getExpYear(), order.getCvv(), order.getSubtotal(), order.getTax(), order.getShippingCost(), order.getTotal());
+		    	
+		    	// If not successfully inserted into billing table, remove entry in customer table for this order to preserve idempotent of the database
+		    	if (!insertIntoBilling) {
+		    		deleteCustomersEntry(connection, order.getOrderId());
+		    	}
+		    	else {
+		        	sql = "INSERT INTO order_items (order_id, product_id, image_src, item_name, price, quantity)" +
+		            		"VALUES (?, ?, ?, ?, ?, ?)";
+		        	
+		        	List<OrderItem> itemsList = order.getOrderItems();
+		        	
+		        	for (int i = 0; i < itemsList.size(); ++i) {
+		        		OrderItem item = itemsList.get(i);
 		        		
-		        		// Delete entry in billing table for this order
-		        		deleteBillingEntry(connection, order.getOrderId());
-		        		
-		        		// If i > 0, then delete any entries in order table for this order
-		        		if (i > 0) {
-		        			deleteOrderItems(connection, order.getOrderId());		        			
-		        		}
-		        		
-		        		// To get out of the loop inserting each item into the order_items table
-		        		i = itemsList.size();
+			        	insertIntoOrderItems = DatabaseUtils.performDBUpdateForOrderItems(connection, sql, orderId, item.getProductId(), item.getImageSrc(), item.getItemName(), item.getPrice(), item.getQuantity());
+			        
+			        	// If not successfully able to insert an order item into the order_items table, remove entry in all tables to preserve idempotent of the database
+			        	if (!insertIntoOrderItems) {
+			        		// Delete entry in customers table for this order
+			        		deleteCustomersEntry(connection, order.getOrderId());
+			        		
+			        		// Delete entry in billing table for this order
+			        		deleteBillingEntry(connection, order.getOrderId());
+			        		
+			        		// If i > 0, then delete any entries in order table for this order
+			        		if (i > 0) {
+			        			deleteOrderItems(connection, order.getOrderId());		        			
+			        		}
+			        		
+			        		// To get out of the loop inserting each item into the order_items table
+			        		i = itemsList.size();
+			        	}
 		        	}
-   	        	}
-        	}
-        }
-        
-        try {
+		    	}
+		    }
+		    
+		    try {
+		
+		        // Close database connection
+		        connection.close();
+		    } 
+		    catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+    	}
 
-            // Close database connection
-            connection.close();
-        } 
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    	if (insertIntoCustomers && insertIntoBilling && insertIntoOrderItems) {
+    	if (validFields && insertIntoCustomers && insertIntoBilling && insertIntoOrderItems) {
     		return orderId;
     	}
     	else {
@@ -224,6 +228,22 @@ public class OrderService {
 
         return updateStatus;
     }
+
+	private static boolean validateFields(Order order) {
+		return (!order.getFirstName().isEmpty() && 
+				!order.getLastName().isEmpty() &&
+				(order.getPhoneNum().length() == 10) &&
+				!order.getAddress1().isEmpty() && 
+				!order.getCity().isEmpty() &&
+				(order.getState().length() == 2) && 
+				(order.getZipcode().length() == 5) &&
+				!order.getShippingMethod().isEmpty() &&
+				!order.getCardType().isEmpty() && 
+				(order.getCardNumber().length() == 16) &&
+				!order.getExpMonth().isEmpty() && 
+				!order.getExpYear().isEmpty() &&
+				(order.getCvv().length() == 3));		
+	}
 }
 
 
