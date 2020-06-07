@@ -7,6 +7,100 @@
 - Marissa Yvonne Salcido&nbsp; (86569875)
 
 # REST APIs
+### Description: Post a new order
+###### i. Method Type:
+Post
+###### ii. Request URL:
+http://localhost:8080/TomeRestService/tomerest/order
+###### iii. Sample Response:
+HTTP/1.1 200 OK
+Date: Wed, 27 May 2020 06:08:22 GMT
+Content-Type: application/json
+Access-Control-Max-Age: 1728000
+Cache-Control: no-cache
+{
+    "orderId": 12,
+    "firstName": "Test2",
+    "lastName": "Lovelace",
+    "phoneNum": "9999999999",
+    "address1": "9 Computing Way",
+    "address2": "",
+    "city": "Irvine",
+    "state": "CA",
+    "zipcode": "92617",
+    "shippingMethod": "expedited",
+    "cardType": "Visa",
+    "cardNumber": "9999999999999999",
+    "expMonth": "1",
+    "expYear": "2021",
+    "cvv": "999",
+    "subtotal": 910.23,
+    "tax": 88.8,
+    "shippingCost": 10.99,
+    "total": 1010.23,
+    "orderItems": [
+        {
+            "productId": "INF5678",
+            "imageSrc": "images/1945.jpg",
+            "itemName": "COUNTDOWN 1945",
+            "price": 15.3,
+            "quantity": 1
+        },
+        {
+            "productId": "INF1234",
+            "imageSrc": "images/a_stroke_of_malice.jpg",
+            "itemName": "A STROKE OF MALICE",
+            "price": 15.3,
+            "quantity": 2
+        }
+    ]
+}
+
+###### iv. Sample Request (if applicable):
+POST /TomeRestService/tomerest/order HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+{
+	"firstName": "Test2",
+	"lastName": "Lovelace",
+	"phoneNum": "9999999999",
+	"address1": "9 Computing Way",
+	"address2": "",
+	"city": "Irvine",
+	"state": "CA",
+	"zipcode": "92617",
+	"shippingMethod": "expedited",
+	"cardType": "Visa",
+	"cardNumber": "9999999999999999",
+	"expMonth": "1",
+	"expYear": "2021",
+	"cvv": "999",
+	"subtotal": 910.2300006,
+	"tax": 88.8000006,
+	"shippingCost": 10.99,
+	"total": 1010.230003,
+	"orderItems": 
+		[
+			{
+				"productId": "INF5678", 
+				"imageSrc": "images/1945.jpg", 
+				"itemName": "COUNTDOWN 1945",
+				"price": 15.30,
+				"quantity": 1
+			},
+			{
+				"productId": "INF1234", 
+				"imageSrc": "images/a_stroke_of_malice.jpg",
+				"itemName": "A STROKE OF MALICE", 
+				"price": 15.30, 
+				"quantity": 2
+			}
+		]
+}
+	
+&nbsp;
+&nbsp;
+
 ### Description: Get all books' product information
 ###### i. Method Type
 GET
@@ -151,6 +245,8 @@ GET http://localhost:8080/TomeRestService/tomerest/books/INF5678
 
 &nbsp;
 &nbsp;
+
+
 
 ### Description: GET Book with product code INF5678
 ###### i. Method Type
@@ -371,97 +467,6 @@ GET http://localhost:8080/TomeRestService/tomerest/books/INF9782
 &nbsp;
 &nbsp;
 
-### Description: Post a new order
-###### i. Method Type:
-Post
-###### ii. Request URL:
-http://localhost:8080/TomeRestService/tomerest/order
-###### iii. Sample Response:
-HTTP/1.1 200 OK
-Date: Wed, 27 May 2020 06:08:22 GMT
-Content-Type: application/json
-Access-Control-Max-Age: 1728000
-Cache-Control: no-cache
-{
-    "orderId": 12,
-    "firstName": "Test2",
-    "lastName": "Lovelace",
-    "phoneNum": "9999999999",
-    "address1": "9 Computing Way",
-    "address2": "",
-    "city": "Irvine",
-    "state": "CA",
-    "zipcode": "92617",
-    "shippingMethod": "expedited",
-    "cardType": "Visa",
-    "cardNumber": "9999999999999999",
-    "expMonth": "1",
-    "expYear": "2021",
-    "cvv": "999",
-    "subtotal": 910.23,
-    "tax": 88.8,
-    "shippingCost": 10.99,
-    "total": 1010.23,
-    "orderItems": [
-        {
-            "productId": "INF5678",
-            "imageSrc": "images/1945.jpg",
-            "itemName": "COUNTDOWN 1945",
-            "price": 15.3,
-            "quantity": 1
-        },
-        {
-            "productId": "INF1234",
-            "imageSrc": "images/a_stroke_of_malice.jpg",
-            "itemName": "A STROKE OF MALICE",
-            "price": 15.3,
-            "quantity": 2
-        }
-    ]
-}
-
-###### iv. Sample Request (if applicable):
-POST /TomeRestService/tomerest/order HTTP/1.1
-Host: localhost:8080
-Content-Type: application/json
-{
-	"firstName": "Test2",
-	"lastName": "Lovelace",
-	"phoneNum": "9999999999",
-	"address1": "9 Computing Way",
-	"address2": "",
-	"city": "Irvine",
-	"state": "CA",
-	"zipcode": "92617",
-	"shippingMethod": "expedited",
-	"cardType": "Visa",
-	"cardNumber": "9999999999999999",
-	"expMonth": "1",
-	"expYear": "2021",
-	"cvv": "999",
-	"subtotal": 910.2300006,
-	"tax": 88.8000006,
-	"shippingCost": 10.99,
-	"total": 1010.230003,
-	"orderItems": 
-		[
-			{
-				"productId": "INF5678", 
-				"imageSrc": "images/1945.jpg", 
-				"itemName": "COUNTDOWN 1945",
-				"price": 15.30,
-				"quantity": 1
-			},
-			{
-				"productId": "INF1234", 
-				"imageSrc": "images/a_stroke_of_malice.jpg",
-				"itemName": "A STROKE OF MALICE", 
-				"price": 15.30, 
-				"quantity": 2
-			}
-		]
-}
-	
 
 ## Website - PA4 IS NOT DEPLOYED IN OPENLAB. WE HAVE SIGNED UP FOR A WEBSITE DEMONSTRATION.
 ### Link: Not applicable
