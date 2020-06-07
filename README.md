@@ -7,13 +7,7 @@
 - Marissa Yvonne Salcido&nbsp; (86569875)
 
 # REST APIs
-### Description (TEMPLATE - Copy and paste to add another method)
-###### i. Method Type
-###### ii. Request URL
-###### iii. Sample Response
-###### iv. Sample Request (if applicable)
-
-### Description: Get catalog products/information
+### Description: Get all books' product information
 ###### i. Method Type
 GET
 ###### ii. Request URL
@@ -127,6 +121,32 @@ Content-Length: 3876
 ]
 ###### iv. Sample Request (if applicable):
 GET http://localhost:8080/TomeRestService/tomerest/books
+
+
+### Description: Get a book by product id
+###### i. Method Type
+GET
+###### ii. Request URL
+http://localhost:8080/TomeRestService/tomerest/books/PRODUCTID, where PRODUCTID is a specific product identifier.
+For example, http://localhost:8080/TomeRestService/tomerest/books/INF5678
+###### iii. Sample Response
+HTTP/1.1 200 OK
+Date: Sun, 07 Jun 2020 03:42:06 GMT
+Content-type: application/json
+Content-Length: 259
+{
+    "id": "INF5678",
+    "author": "Chris Wallace",
+    "genre": "Mystery",
+    "name": "COUNTDOWN 1945",
+    "price": 15.3,
+    "type": "HARDCOVER",
+    "image": "images/1945.jpg",
+    "summary": "An electrifying behind-the-scenes account of the 116 days leading up to the American attack on Hiroshima."
+}
+###### iv. Sample Request (if applicable)
+GET http://localhost:8080/TomeRestService/tomerest/books/INF5678
+
 
 ### Description: GET Book with product code INF5678
 ###### i. Method Type
@@ -439,11 +459,11 @@ Content-Type: application/json
 ## Website - PA4 IS NOT DEPLOYED IN OPENLAB. WE HAVE SIGNED UP FOR A WEBSITE DEMONSTRATION.
 ### Link: Not applicable
 ### Database Password: Not applicable
-### Deploying Assignment 3
+### Deploying Assignment 4
 *Replace "user" with your own openlab username
 
 Local Command Line:
-- scp project3.war user@circinus-8.ics.uci.edu:/home/user/s2020-iae/pserv/
+- scp project4.war user@circinus-8.ics.uci.edu:/home/user/s2020-iae/pserv/
 
 Openlab Deployment:
 - Log into UCI VPN
@@ -453,6 +473,7 @@ Openlab Deployment:
 - singularity instance start -B /home/user/s2020-iae/pserv/:/usr/local/tomcat/webapps --writable ics124-tomcat:simg $USER-tomcat
 - singularity run instance://$USER-tomcat
 
+*** Repeat the above steps for each war file: the REST services war file and the client war file.
 
 ## General Layout/Design
 1. The website starts at index.html which is the the e-commerce **home page** and will include:
