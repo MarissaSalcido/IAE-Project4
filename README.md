@@ -283,7 +283,7 @@ Openlab Deployment:
    - Asks user to fill in information for ordering the products, including shipping and billing information
    - The items from the shopping cart are listed on the bottom of the page too
    - Also, the subtotal, tax, shipping, and total cost are displayed on the bottom too
-   - Note: There is no form validation, so the form must be correctly filled in before submitting. Otherwise, it will lead to a blank page after clicking the submit button.
+   - Note: There is no form validation on the client side, so the form must be correctly filled in before submitting. Otherwise, it will lead the Order Confirmation page displaying that there was an error in processing.
 6. Order Confirmation
    - Includes a summary of the customer's order details after submitting an order. 
 6. The About Us Page
