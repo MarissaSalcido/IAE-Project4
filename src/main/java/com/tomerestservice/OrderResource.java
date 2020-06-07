@@ -21,7 +21,7 @@ public class OrderResource {
             return Response.ok(OrderService.getOrderById(orderId), MediaType.APPLICATION_JSON).build();
         }
         else {
-        	return Response.status(Response.Status.NOT_FOUND).build();
+        	return Response.status(Response.Status.NOT_FOUND).entity("Unable to process order").build();
         }
 
         // Return an Internal Server error because something wrong happened. This should never be executed
